@@ -1,0 +1,29 @@
+game.Scene:ClearAllChildren()
+
+local S = game.Sky
+S:SetFaceTexture(0, "posx.png")
+S:SetFaceTexture(1, "negx.png")
+S:SetFaceTexture(2, "posy.png")
+S:SetFaceTexture(3, "negy.png")
+S:SetFaceTexture(4, "posz.png")
+S:SetFaceTexture(5, "negz.png")
+
+for x = 1, 70 do
+for y = 1, 70 do
+for z = 1, 70 do
+local Part = Instance("Part")
+Part.Parent = game.Scene
+Part.Position = Vector3(x * 10, y * 10, z * 10)
+for s = 0,5 do
+Part:SetFaceTexture(s, "transparencytest.png")
+end
+if x % 4 == 0 or x % 4 == 3 then
+Part.Shape = "Teapot"
+end
+Part.Size = Vector3(5, 5, 5)
+if x % 4 == 0 or x % 4 == 2 then
+Part.Transparency = 0.5
+end
+end
+end
+end
