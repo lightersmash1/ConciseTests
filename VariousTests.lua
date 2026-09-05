@@ -15,9 +15,10 @@ Light.Position = Pos
 Light.Parent = game.Scene
 Light.FOV = math.rad(FOV)
 Light.Rotation = Angle
+return Light
 end
 
-CreateSpotLight(Vector3(30, 40, 30), 90, vector(math.rad(-90), 0, 0))
+local  Light = CreateSpotLight(Vector3(30, 40, 30), 90, vector(math.rad(-90), 0, 0))
 
 local CoolPart = Instance("Part")
 CoolPart.Parent = game.Scene
@@ -32,13 +33,14 @@ local Part = Instance("Part")
 Part.Parent = game.Scene
 Part.Position = Vector3(10, -5, 10)
 Part.Size = Vector3(500, 2, 500)
+Part.Anchored = true
 
 Part2:Destroy()
 
 local Text = Instance("TextObject")
 Text.Position = vector(0.2, 0.2, 0.0)
 Text.Size = vector(0.2, 0.2, 0.0)
-Text.Text = "Hello this is my text ©"
+Text.Text = "Hello this is my text"
 Text.Transparency = 1.0
 Text.TextColor = vector(0.5, 0.0, 0.0)
 Text.ZIndex = 5
@@ -47,6 +49,17 @@ Text.CornerSize = 0.01
 Text.FontSize = 0.04
 Text.SizeConstraint = "XX"
 Text.Parent = game.UIScene
+
+local Particles = Instance("Particles")
+Particles.Parent = game.Scene
+Particles.Texture = "magic_05_a.png"
+Particles.Velocity = vector(0, 10, 0)
+Particles.Lifetime = 2
+Particles.Rate = 100
+Particles.Color = vector(1, 0, 1)
+Particles.EndColor = vector(0, 1, 0)
+Particles.MinimumRandomVelocity = vector(-10, 0, -10)
+Particles.MaximumRandomVelocity = vector(10, 0, 10)
 
 RealColor = vector(1, 1, 1)
 
@@ -72,9 +85,18 @@ local i = 0
 
 while true do
 i = i + 1
-CoolPart.Position = vector(math.sin(i / 60)* 5, 0, math.cos(i / 60) * 5) + vector(10, 5, 10)
-CoolPart.Rotation = CoolPart.Rotation + vector(1/100, 1/ 100, 1/100)
---Light.FOV = math.rad(math.sin(i / 30) * 20 + 50)
+CoolPart.CFrame = CFrame.new(math.sin(i / 60)* 5, 0, math.cos(i / 60) * 5) + CFrame.new(10, 5, 10) 
++ CFrame.fromAngles(i / 60, i / 60, i / 60)
+Light.FOV = 130
 
 sleep(0)
 end
+
+
+
+
+
+
+
+
+
